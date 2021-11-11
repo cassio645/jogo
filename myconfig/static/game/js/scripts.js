@@ -1,12 +1,3 @@
-
-// Pegando o número de vidas atual e transformando em número
-var vidas = document.querySelector("#vidas");
-var numero_vidas = Number(vidas.textContent);
-
-// Fazendo aparecer no html o emoji de coração, usando a função repeat e o NÚMERO de vidas atual.
-vidas.innerHTML = "&#128151;".repeat(numero_vidas);
-
-
 // pegando a mensagem de feedback e alterando as cores para verde se acertou e vermelho se não acertou
 var txt = document.querySelector("#message");
 var msg = txt.textContent;
