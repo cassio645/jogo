@@ -7,7 +7,7 @@ from .forms import Formulario
 from .game import jogar
 
 
-def vidas_inicial():
+def reset_vidas():
     # função que seta o número de vidas inicial +1, pois sempre sera removida no GET
     return 4
 
@@ -15,23 +15,23 @@ def pontos_inicial():
     # configurando a pontuação inicial
     return 0
 
+# zerando a pontuação
+pontuacao = pontos_inicial()
+vidas = reset_vidas()
+
 
 def index(request):
     # Zerando a pontuação, sempre que voltar para a página inicial
     global pontuacao
+    global vidas
     pontuacao = pontos_inicial()
-    vidasUser = vidas_inicial()
+    vidas = reset_vidas()
     temas = Tema.objects.all().order_by('nome')
     return render(request, 'game/index.html', {"temas":temas})
 
-# zerando a pontuação
-pontuacao = pontos_inicial()
-
-
 
 def jogo(request, slug):
-    # Pegando a pontuação
-    global pontuacao
+
     form = Formulario()
 
     if request.method == "GET":
@@ -55,7 +55,15 @@ def jogo(request, slug):
         imagem = palavra.imagem
 
 
-        return render(request, "game/jogo.html", {"imagem":imagem, "resp":resp, "form":form, "pontos":pontuacao, "tema":nome})
+        # Pegando a pontuação
+        global pontuacao
+        global vidas
+        vidas -= 1
+        if vidas < 1:
+            return redirect('game:gameover')
+
+
+        return render(request, "game/jogo.html", {"imagem":imagem, "resp":resp, "form":form, "pontos":pontuacao, "tema":nome, "vidas":vidas})
     else:
 
         # no form está o input onde o usuário irá responder
@@ -72,11 +80,16 @@ def jogo(request, slug):
             # caso ele tenha acertado ele recebe 1 ponto E a vida devolta que ele havia perdido no GET
             if "Acertou" in msg:
                 pontuacao += 1
+                vidas += 1
+            if vidas < 1:
+                return redirect('game:gameover')
             return redirect('game:jogo', slug=slug)
 
 
 def gameover(request):
     messages.info(request, "")
+    global vidas
+    vidas = reset_vidas()
     return render(request, "game/gameover.html", {"pontos":pontuacao})
 
 
