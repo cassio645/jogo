@@ -9,21 +9,21 @@ from .game import jogar
 
 def reset_vidas():
     # função que seta o número de vidas inicial +1, pois sempre sera removida no GET
-    return 4
+    return 3
 
 def pontos_inicial():
     # configurando a pontuação inicial
     return 0
 
 # zerando a pontuação
+global pontuacao
+global vidas
 pontuacao = pontos_inicial()
 vidas = reset_vidas()
 
 
 def index(request):
     # Zerando a pontuação, sempre que voltar para a página inicial
-    global pontuacao
-    global vidas
     pontuacao = pontos_inicial()
     vidas = reset_vidas()
     temas = Tema.objects.all().order_by('nome')
@@ -58,7 +58,6 @@ def jogo(request, slug):
         # Pegando a pontuação
         global pontuacao
         global vidas
-        vidas -= 1
         if vidas < 1:
             return redirect('game:gameover')
 
@@ -80,7 +79,8 @@ def jogo(request, slug):
             # caso ele tenha acertado ele recebe 1 ponto E a vida devolta que ele havia perdido no GET
             if "Acertou" in msg:
                 pontuacao += 1
-                vidas += 1
+            elif "Errou" in msg:
+                vidas -= 1
             if vidas < 1:
                 return redirect('game:gameover')
             return redirect('game:jogo', slug=slug)
