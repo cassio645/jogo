@@ -222,16 +222,16 @@ input[type="submit"]{
     background-color: rgb(210, 162, 212);
     font-size: 25px;
     border-radius: 8px;
-    margin-top: 80px;
+    margin-top: 75px;
     margin-left: 15%;
-    padding-top: 100px;
+    padding-top: 90px;
 
 }
 .gameover h1{
     font-size: 50px;
 }
 .gameover a{
-    margin-top: 20%;
+    margin-top: 18%;
     color:black
 }
 

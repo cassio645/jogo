@@ -7,31 +7,26 @@ from .forms import Formulario
 from .game import jogar
 
 
-def reset_vidas():
-    # função que seta o número de vidas inicial +1, pois sempre sera removida no GET
-    return 3
-
-def pontos_inicial():
-    # configurando a pontuação inicial
-    return 0
-
-# zerando a pontuação
-global pontuacao
-global vidas
-pontuacao = pontos_inicial()
-vidas = reset_vidas()
-
+vidas = 3
+pontuacao = 0
 
 def index(request):
-    # Zerando a pontuação, sempre que voltar para a página inicial
-    pontuacao = pontos_inicial()
-    vidas = reset_vidas()
+    global vidas
+    global pontuacao
+
+    if vidas != 3 or pontuacao != 0:
+        vidas = 3
+        pontuacao = 0
+
     temas = Tema.objects.all().order_by('nome')
     return render(request, 'game/index.html', {"temas":temas})
 
 
 def jogo(request, slug):
-
+    global pontuacao
+    global vidas
+    if vidas < 1:
+        return redirect('game:gameover')
     form = Formulario()
 
     if request.method == "GET":
@@ -54,14 +49,7 @@ def jogo(request, slug):
         # pegando a imagem referente a palavra sorteada
         imagem = palavra.imagem
 
-
         # Pegando a pontuação
-        global pontuacao
-        global vidas
-        if vidas < 1:
-            return redirect('game:gameover')
-
-
         return render(request, "game/jogo.html", {"imagem":imagem, "resp":resp, "form":form, "pontos":pontuacao, "tema":nome, "vidas":vidas})
     else:
 
@@ -79,18 +67,24 @@ def jogo(request, slug):
             # caso ele tenha acertado ele recebe 1 ponto E a vida devolta que ele havia perdido no GET
             if "Acertou" in msg:
                 pontuacao += 1
-            elif "Errou" in msg:
+            else:
                 vidas -= 1
-            if vidas < 1:
-                return redirect('game:gameover')
             return redirect('game:jogo', slug=slug)
 
 
 def gameover(request):
-    messages.info(request, "")
+    global pontuacao
     global vidas
-    vidas = reset_vidas()
-    return render(request, "game/gameover.html", {"pontos":pontuacao})
+
+    if pontuacao != 1:
+        msg = f"Você fez {pontuacao} Pontos"
+    else:
+        msg = f"Você fez {pontuacao} Ponto"
+    messages.info(request, msg)
+
+    vidas = 3
+    pontuacao = 0
+    return render(request, "game/gameover.html")
 
 
 def aprenda(request, slug):

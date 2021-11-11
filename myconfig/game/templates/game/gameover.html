@@ -7,18 +7,15 @@
     <div class="jogo-container">
             <div class="gameover">
                 <h1>Game Over</h1>
-                <p>Você fez {{pontos}} ponto{{pontos|pluralize}}.</p>
-                <a href="{% url 'game:index' %}" class="btn btn-warning">🡠 Voltar</a>
-            </div>
-
-            {% if messages %}
-            <div class="rodada-passada">
-
+                {% if messages %}
                     {% for message in messages %}
                         <p class="p-messages"><span {% if message.tags %} class="{{ message.tags }}"{% endif %} id="message">{{ message }}</span></p>
                     {% endfor %}
+                {% endif %}
+                <a href="{% url 'game:index' %}" class="btn btn-warning">🡠 Voltar</a>
             </div>
-            {% endif %}
+
+
     </div>
 </div>
 
