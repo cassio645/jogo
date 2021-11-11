@@ -1,0 +1,256 @@
+body{
+    background-color:rgba(172, 171, 158, 0.808);
+}
+
+h1{
+    text-align: center;
+    margin-top: 0;
+}
+
+h2{
+    margin-top: 5px;
+    font-size: 35px;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    color:black
+}
+
+strong{
+    font-weight: 650;
+}
+
+/* home */
+.container-jogos{
+    width: 200px;
+    height: 250px;
+    background-color: rgb(138, 68, 123);
+    display: inline-block;
+    border: 2px solid black;
+    margin-left: 5%;
+    margin-top: 5%;
+    border-radius: 10px;
+}
+
+
+.imagem-jogos{
+    width: 86%;
+    height: 150px;
+    border: 10px solid black;
+    border-radius: 8px;
+    margin-left: 7.3%;
+    margin-top: 2%;
+}
+
+.nome-jogos{
+    color:white;
+    font-size: 18px;
+    margin-left: 3%;
+}
+
+.botao-jogar{
+    width: 62px;
+    height: 60px;
+    background-color: rgb(189, 184, 184);
+    color: rgb(27, 26, 26);
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+    padding-top: 15px;
+    display: inline-block;
+    margin-top: -2px;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.botao-jogar:hover{
+    background-color: #666;
+    color:rgb(0, 0, 0)
+}
+
+.aprenda-jogos{
+    width: 70px;
+    height: 28px;
+    background-color: rgb(255, 230, 0);
+    color:rgb(54, 54, 37);
+    border: 1px solid rgba(29, 28, 28, 0.774);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 650;
+    padding: 2px;
+    padding-left: 8px;
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.aprenda-jogos:hover{
+    background-color: rgb(182, 182, 20);
+    color:rgb(29, 28, 28)
+}
+
+#home-paragrafo{
+    font-weight: 400;
+    font-size: 20px;
+    padding-left: 10px;
+    margin-bottom: auto;
+}
+
+/* Jogo */
+.container {
+    margin: 5px;
+    width: 100%;
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jogo-container{
+    width: 450px;
+    height: 530px;
+    background-color: rgb(138, 68, 123);
+    border: 5px solid rgb(29, 28, 28);
+    border-radius: 12px;
+    display: inline-block;
+}
+
+#pontuacao{
+    padding-left: 15px;
+    float: left;
+}
+
+#timer{
+    margin-left: auto;
+    padding-right: 10px;
+}
+
+.tela-jogo{
+    width: 400px;
+    height: 320px;
+    background-color: white;
+    display: inline-block;
+    border: 15px solid black;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.tela-jogo img{
+    padding-bottom: 60px;
+}
+
+.rodada-passada{
+    width: 80%;
+    height: 50px;
+    background-color: rgb(210, 162, 212);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+.p-messages{
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+
+#titulo-jogo{
+    color: white;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#id_resposta{
+    background-color: rgb(87, 60, 87);
+    color:white;
+    width: 300px;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 2px solid rgb(255, 230, 0);
+    border-radius: 5px;
+}
+
+#id_resposta::placeholder{
+    color:rgba(255, 255, 255, 0.699);
+}
+
+#id_resposta[type=text]{
+    background-color: rgb(87, 60, 87);
+    border-bottom: 2px solid rgb(255, 230, 0);
+    border-radius: 5px;
+}
+
+#submit-jogo{
+    background-color: rgb(87, 60, 87);
+    width: 35px;
+    font-size: 14px;
+    border-radius: 5px;
+    border:none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#submit-jogo:hover{
+    background-color: rgb(255, 230, 0);
+    border:1px solid rgb(153, 153, 37);
+}
+
+input[type="submit"]{
+    margin-left: -45px;
+    border-color: rgb(15, 15, 15);
+}
+
+
+/* gameover */
+
+.gameover{
+    width: 300px;
+    height: 350px;
+    background-color: rgb(210, 162, 212);
+    font-size: 25px;
+    border-radius: 8px;
+    margin-top: 80px;
+    margin-left: 15%;
+    padding-top: 100px;
+
+}
+.gameover h1{
+    font-size: 50px;
+}
+.gameover a{
+    margin-top: 20%;
+    color:black
+}
+
+/*aprenda*/
+
+.image-aprenda{
+    width: 100px;
+    height: 80px;
+}
+
+.div-aprenda{
+    display: inline-block;
+    padding: 20px;
+    text-align: center;
+}
+
+/*sobre*/
+.sobre-container{
+    margin-top: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
