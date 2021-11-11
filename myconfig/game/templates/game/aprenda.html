@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Aprenda{% endblock %}
+
+{% block content %}
+<style>
+    body{
+        background-color: white;
+    }
+</style>
+<h1>Aprenda</h1>
+        <div class="main-site">
+            <h4>Palavras do tema: </h4>
+            <ul>
+                {% for palavra in lista %}
+                    <div class="div-aprenda">
+                        <img src="{{ palavra.imagem.url }}" class="image-aprenda">
+                        {% if palavra.wiki %}
+                            <li><a href="{{ palavra.wiki }}" rel="nofollow" target="_blank">{{ palavra.resposta }}</a></li>
+                        {% else %}
+                            <li>{{ palavra.resposta }}</li>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </ul>
+</div>
+{% endblock %}

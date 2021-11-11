@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Página inicial {% endblock %}
+
+
+{% block content %}
+<h1>Escolha um tema para jogar</h1>
+    <div class="main-site">
+        <p id="home-paragrafo">Um jogo simples onde aparece uma imagem e você tenta acertar o nome</p>
+        <ul>
+            {% for tema in temas %}
+                <div class="container-jogos">
+                    <img src="{{tema.img.url}}" class="imagem-jogos">
+                    <div class="nome-jogos">{{tema.nome|title}}</div>
+                    <a href="{% url 'game:jogo' slug=tema.slug %}" class="botao-jogar">Jogar</a>
+                    <a href="{% url 'game:aprenda' slug=tema.slug %}" class="aprenda-jogos">Aprenda</a> 
+                </div>
+            {% endfor %}
+        </ul>
+</div>
+
+{% endblock %}
