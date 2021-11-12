@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool, default=False)
 
-ALLOWED_HOSTS = ['https://game645.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['https://jogo645.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -147,4 +147,4 @@ AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 
 AWS_STORAGE_BUCKET_NAME = 'game645'
 
-django_on_heroku.settings(locals(),staticfiles=False)
+django_on_heroku.settings(locals())
