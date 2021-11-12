@@ -1,5 +1,5 @@
 // pegando o timer setando o tempo inicial
-const starting = 0.15;
+const starting = 0.3;
 let time = starting * 60;
 const cont = document.querySelector("#timer");
 

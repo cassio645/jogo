@@ -108,7 +108,7 @@ strong{
 }
 
 /* Jogo */
-.container {
+.container-fluid {
     margin: 5px;
     width: 100%;
     text-align: center; 
@@ -117,8 +117,9 @@ strong{
 }
 
 .jogo-container{
-    width: 450px;
-    height: 530px;
+    width: 380px;
+    height: 500px;
+    position: relative;
     background-color: rgb(138, 68, 123);
     border: 5px solid rgb(29, 28, 28);
     border-radius: 12px;
@@ -126,27 +127,42 @@ strong{
 }
 
 #pontuacao{
-    padding-left: 15px;
+    padding-left: 10px;
     float: left;
 }
 
 #timer{
-    margin-left: auto;
-    padding-right: 10px;
+    float: left;
+    padding-left: 15px;
+}
+
+#vidas{
+    float: left;
+    padding-left: 15px;
+}
+
+#num-vidas{
+    float: left;
+    padding-left: 2px;
+}
+
+.bi-heart-fill{
+    color: rgb(190, 41, 41);
 }
 
 .tela-jogo{
-    width: 400px;
-    height: 320px;
+    width: 350px;
+    height: 280px;
     background-color: white;
     display: inline-block;
-    border: 15px solid black;
+    border: 12px solid black;
     margin-top: 10px;
     border-radius: 10px;
 }
 
 .tela-jogo img{
-    padding-bottom: 60px;
+    padding-bottom: 30px;
+    padding-top: 10px;
 }
 
 .rodada-passada{
@@ -155,7 +171,7 @@ strong{
     background-color: rgb(210, 162, 212);
     border-radius: 5px;
     margin-top: 10px;
-    margin-left: 40px;
+    margin-left: 35px;
 }
 
 .p-messages{
@@ -163,11 +179,11 @@ strong{
     margin-left: 10px;
 }
 
-
 #titulo-jogo{
     color: white;
     text-align: left;
-    margin-top: 5px;
+    font-size: 32px;
+    padding-top: 20px;
     margin-left: 10px;
 }
 
@@ -175,7 +191,7 @@ strong{
     background-color: rgb(87, 60, 87);
     color:white;
     width: 300px;
-    margin: 20px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     border-bottom: 2px solid rgb(255, 230, 0);
@@ -212,8 +228,6 @@ input[type="submit"]{
     margin-left: -45px;
     border-color: rgb(15, 15, 15);
 }
-
-
 /* gameover */
 
 .gameover{
@@ -222,8 +236,9 @@ input[type="submit"]{
     background-color: rgb(210, 162, 212);
     font-size: 25px;
     border-radius: 8px;
-    margin-top: 70px;
-    margin-left: 15%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 50px;
 }
 .gameover h1{

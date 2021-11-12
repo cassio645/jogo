@@ -3,32 +3,33 @@
 {% block title %}{{tema|capfirst}}{% endblock %}
 
 {% block content %}
-<div class="container">
-        <div class="jogo-container">
-            <div class="tela-jogo">
-                <p class="placar">
-                    <span id="pontuacao"><strong>Pontuação: </strong>{{pontos}}</span> 
-                    <span id="timer"><strong>Tempo: </strong>10</span>
-                    <span id="vidas"><strong>Vidas:</strong> {{vidas}}</span>
-                </p>
-
-                    <img src="{{ imagem.url }}" height="300vmax" width="350vmax">
+    <div class="container-fluid">
+            <div class="jogo-container">
+                <div class="tela-jogo">
+                    <p class="placar">
+                        <span id="pontuacao"><strong>Pontuação: </strong>{{pontos}}</span>
+                        <span id="timer"><strong>Tempo: </strong>19</span>
+                        <span id="vidas"><strong>Vidas:</strong></span><span id="num-vidas">{{vidas}}</span>
+                    </p>
+    
+                        <img src="{{ imagem.url }}" height="260px" width="320px">
+                </div>
+                <div class="rodada-passada">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="p-messages"><span {% if message.tags %} class="{{ message.tags }}"{% endif %} id="message">{{ message }}</span></p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <h1 id="titulo-jogo">{{tema|capfirst}}</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-resp">{{ form.resposta }}
+                    <input type="submit" id="submit-jogo" value="🡢"></input></div>
+                </form>
             </div>
-            <div class="rodada-passada">
-                {% if messages %}
-                    {% for message in messages %}
-                        <p class="p-messages"><span {% if message.tags %} class="{{ message.tags }}"{% endif %} id="message">{{ message }}</span></p>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <h1 id="titulo-jogo">{{tema|capfirst}}</h1>
-            <form method="post">
-                {% csrf_token %}
-                <div class="input-resp">{{ form.resposta }}
-                <input type="submit" id="submit-jogo" value="🡢"></input></div>
-            </form>
-        </div>
-    <script src="{% static 'game/js/timer.js' %}"></script>
+        <script src="{% static 'game/js/timer.js' %}"></script>
+    </div>
 </div>
 
 {% endblock %}

@@ -1,3 +1,9 @@
+var textoVidas = document.querySelector("#num-vidas")
+var numeroVidas = Number(textoVidas.textContent)
+
+textoVidas.innerHTML = '<i class="bi bi-heart-fill"></i> '.repeat(numeroVidas);
+
+
 // pegando a mensagem de feedback e alterando as cores para verde se acertou e vermelho se não acertou
 var txt = document.querySelector("#message");
 var msg = txt.textContent;
