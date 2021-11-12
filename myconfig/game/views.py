@@ -7,13 +7,11 @@ from .forms import Formulario
 from .game import jogar
 
 
-vidas = 3
-pontuacao = 0
 
 def index(request):
-    # zerando a pontuacao e criando uma session para respostas do usuário com valor VAZIO
-    global pontuacao
-    pontuacao = 0
+    # Criando sessions para o placar e resposta do usuário
+    request.session["vidas"] = 3
+    request.session["pontos"] = 0
     request.session["user"] = ""
 
     # listando todos os temas 
@@ -22,8 +20,6 @@ def index(request):
 
 
 def jogo(request, slug):
-    global pontuacao
-    global vidas
     form = Formulario()
 
     if request.method == "GET":
@@ -32,8 +28,8 @@ def jogo(request, slug):
         # sempre vem vazia do index, e não permite que o usuario fique atualizando a página, para trocar a imagem
         # sem perder vidas
         if request.session["user"] == "":
-            vidas = 3
-            pontuacao = 0
+            request.session["vidas"] = 3
+            request.session["pontos"] = 0
         
         # resetando a session
         request.session["user"] = ""
@@ -58,11 +54,17 @@ def jogo(request, slug):
         imagem = palavra.imagem
 
         # Se acabar as vidas vai para página gameover
-        if vidas < 1:
+        if request.session["vidas"] < 1:
             return redirect('game:gameover')
 
-        # Pegando a pontuação
-        return render(request, "game/jogo.html", {"imagem":imagem, "resp":resp, "form":form, "pontos":pontuacao, "tema":nome, "vidas":vidas})
+        context = {
+                    "imagem":imagem,
+                    "resp":resp, "form":form,
+                    "pontos":request.session["pontos"],
+                    "vidas":request.session["vidas"],
+                    "tema":nome
+            }
+        return render(request, "game/jogo.html", context)
     else:
 
         # no form está o input onde o usuário irá responder
@@ -81,23 +83,22 @@ def jogo(request, slug):
 
             # caso ele tenha acertado ele recebe 1 ponto E a vida devolta que ele havia perdido no GET
             if "Acertou" in msg:
-                pontuacao += 1
+                request.session["pontos"] += 1
             else:
-                vidas -= 1
+                request.session["vidas"] -= 1
             return redirect('game:jogo', slug=slug)
 
 
 def gameover(request):
-    # Pegando a pontuacao feita, e criando uma mensagem
-    global pontuacao
-    if pontuacao != 1:
-        msg = f"Você fez {pontuacao} pontos"
+    # Pegando a pontuacao feita, e criando uma mensa
+    if request.session["pontos"] != 1:
+        msg = f'Você fez {request.session["pontos"]} pontos'
     else:
-        msg = f"Você fez {pontuacao} ponto"
+        msg = f'Você fez {request.session["pontos"]} ponto'
     messages.info(request, msg)
     
     # zerando a pontuacao, apos exibir a msg
-    pontuacao = 0
+    request.session["pontos"] = 0
     return render(request, "game/gameover.html")
 
 
