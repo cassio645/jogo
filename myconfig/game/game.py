@@ -11,5 +11,5 @@ def jogar(usuario, banco):
         return f'Errou {resp}. Sua resposta foi "{resp_user}"'
     else:
         # Para None ou vazio
-        return f'Errou {resp}. Você não respondeu'
+        return f''
 

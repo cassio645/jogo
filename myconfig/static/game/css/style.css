@@ -218,20 +218,19 @@ input[type="submit"]{
 
 .gameover{
     width: 300px;
-    height: 350px;
+    height: 390px;
     background-color: rgb(210, 162, 212);
     font-size: 25px;
     border-radius: 8px;
-    margin-top: 75px;
+    margin-top: 70px;
     margin-left: 15%;
-    padding-top: 90px;
-
+    padding-top: 50px;
 }
 .gameover h1{
     font-size: 50px;
 }
 .gameover a{
-    margin-top: 18%;
+    margin-bottom: 50%;
     color:black
 }
 
